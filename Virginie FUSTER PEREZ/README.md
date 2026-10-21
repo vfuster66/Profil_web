@@ -1,6 +1,7 @@
-# vfuster66.github.io
+# Profil web
 
 Site personnel de Virginie Fuster Perez, développeuse QA.
+Adresse publiée : https://vfuster66.github.io/Profil_web/
 
 Vue 3, TypeScript et Vite, déployé sur GitHub Pages par GitHub Actions.
 
