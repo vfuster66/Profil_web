@@ -19,7 +19,9 @@ Le tableau des départs du haut de page se règle dans la liste `departs` du mê
 
 ## Le CV
 
-Déposez le CV à jour dans `public/` sous le nom `CV_Virginie_Fuster_Perez.pdf`.
+Les captures et visuels des projets sont dans `src/assets/projets/`.
+
+Le CV téléchargeable est `public/CV_Virginie_Fuster_Perez.pdf` : remplacez ce fichier pour le mettre à jour.
 
 ## Déploiement
 

@@ -4,7 +4,7 @@ import { engagement, formations, langues } from '../data/profil'
 
 <template>
   <section id="formation" class="section">
-    <div class="wrap colonnes">
+    <div class="wrap colonnes" v-reveal>
       <div>
         <div class="section-head"><h2>Formation</h2></div>
         <ol class="formations">
@@ -36,11 +36,12 @@ import { engagement, formations, langues } from '../data/profil'
 .colonnes { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); gap: 3rem 4rem; }
 .formations { list-style: none; margin: 0; padding: 0; display: grid; gap: 1.4rem; }
 .formations li { display: grid; grid-template-columns: 7.5rem minmax(0, 1fr); gap: 1rem; }
-.periode { color: var(--muted); font-variant-numeric: tabular-nums; padding-top: 0.1rem; }
+.periode { color: var(--accent); font-weight: 700; font-variant-numeric: tabular-nums; padding-top: 0.1rem; }
 .intitule { font-weight: 700; }
 .ecole { color: var(--muted); }
 .cote { display: grid; gap: 2.25rem; align-content: start; }
-.petit { font-size: 1.75rem; margin-bottom: 0.75rem; }
+.petit { font-size: 1.9rem; margin-bottom: 0.75rem; }
+.cote > div { background: var(--surface); border-radius: 12px; padding: 1.5rem; border: 1px solid var(--line); }
 @media (max-width: 860px) {
   .colonnes { grid-template-columns: 1fr; }
 }

@@ -1,5 +1,10 @@
 // Toutes les infos du site sont ici : modifiez ce fichier pour mettre le site à jour.
 
+import captureArtizio from '../assets/projets/artizio.jpg'
+import visuelTrajio from '../assets/projets/trajio.jpg'
+import captureFuster from '../assets/projets/fuster-peinture.jpg'
+import flyerFuster from '../assets/projets/fuster-peinture-flyer.jpg'
+
 export const identite = {
   nom: 'Virginie Fuster Perez',
   titre: 'Développeuse QA, qualité logicielle et systèmes d’information',
@@ -12,8 +17,8 @@ export const identite = {
 }
 
 export const accroche = [
-  'Avant de tester des applications, je gérais des départs d’avions. Dans les deux cas, le principe est le même : anticiper les risques, coordonner les équipes et vérifier que tout fonctionne avant le départ.',
-  'Après 24 ans en exploitation aéroportuaire, je me suis reconvertie dans le développement à l’École 42. Je conçois aujourd’hui des tests fonctionnels et automatisés chez UgoFresh, et je développe des sites et applications avec mon entreprise, EVieDev.',
+  'Je fais en sorte que les applications fonctionnent avant d’arriver chez leurs utilisateurs : tests automatisés, non-régression et suivi des anomalies, au plus près des équipes produit et développement.',
+  'Formée à l’architecture informatique et aux données, je développe aussi des sites et applications avec mon entreprise, EVieDev. Mon cap : faire de la qualité une affaire de conception, pas seulement de vérification.',
 ]
 
 export type Statut = 'EN VOL' | 'PARTI'
@@ -23,22 +28,24 @@ export interface Depart {
   poste: string
   lieu: string
   statut: Statut
+  cible: string // id de la section détaillée à afficher au clic
 }
 
 // Tableau des départs du haut de page (le plus récent en premier).
 export const departs: Depart[] = [
-  { annee: '2026', poste: 'DÉVELOPPEUSE QA', lieu: 'UGOFRESH', statut: 'EN VOL' },
-  { annee: '2026', poste: 'PRÉSIDENTE', lieu: 'EVIEDEV', statut: 'EN VOL' },
-  { annee: '2024', poste: 'ALTERNANCE QA', lieu: 'UGOFRESH', statut: 'PARTI' },
-  { annee: '2024', poste: 'DÉV. MOBILE', lieu: 'CLEANSPOT', statut: 'PARTI' },
-  { annee: '2022', poste: 'TRONC COMMUN', lieu: 'ÉCOLE 42', statut: 'PARTI' },
-  { annee: '2021', poste: 'CHEF D’ESCALE ADJ.', lieu: 'AÉROPORT PGF', statut: 'PARTI' },
-  { annee: '2017', poste: 'SUPERVISEURE ESCALE', lieu: 'AÉROPORT PGF', statut: 'PARTI' },
-  { annee: '2005', poste: 'AGENTE DE TRAFIC', lieu: 'AÉROPORT PGF', statut: 'PARTI' },
-  { annee: '1998', poste: 'AGENTE D’ESCALE', lieu: 'AÉROPORT PGF', statut: 'PARTI' },
+  { annee: '2026', poste: 'DÉVELOPPEUSE QA', lieu: 'UGOFRESH', statut: 'EN VOL', cible: 'exp-ugofresh' },
+  { annee: '2026', poste: 'PRÉSIDENTE', lieu: 'EVIEDEV', statut: 'EN VOL', cible: 'exp-eviedev' },
+  { annee: '2024', poste: 'ALTERNANCE QA', lieu: 'UGOFRESH', statut: 'PARTI', cible: 'exp-ugofresh' },
+  { annee: '2024', poste: 'DÉV. MOBILE', lieu: 'CLEANSPOT', statut: 'PARTI', cible: 'exp-cleanspot' },
+  { annee: '2022', poste: 'TRONC COMMUN', lieu: 'ÉCOLE 42', statut: 'PARTI', cible: 'formation' },
+  { annee: '2021', poste: 'CHEF D’ESCALE ADJ.', lieu: 'AÉROPORT PGF', statut: 'PARTI', cible: 'exp-aeroport' },
+  { annee: '2017', poste: 'SUPERVISEURE ESCALE', lieu: 'AÉROPORT PGF', statut: 'PARTI', cible: 'exp-aeroport' },
+  { annee: '2005', poste: 'AGENTE DE TRAFIC', lieu: 'AÉROPORT PGF', statut: 'PARTI', cible: 'exp-aeroport' },
+  { annee: '1998', poste: 'AGENTE D’ESCALE', lieu: 'AÉROPORT PGF', statut: 'PARTI', cible: 'exp-aeroport' },
 ]
 
 export interface Experience {
+  id: string
   poste: string
   structure: string
   periode: string
@@ -48,6 +55,7 @@ export interface Experience {
 
 export const experiences: Experience[] = [
   {
+    id: 'exp-ugofresh',
     poste: 'Développeuse QA',
     structure: 'UgoFresh',
     periode: 'Depuis octobre 2026, en alternance d’octobre 2024 à septembre 2026',
@@ -60,16 +68,18 @@ export const experiences: Experience[] = [
     ],
   },
   {
+    id: 'exp-eviedev',
     poste: 'Présidente',
     structure: 'EVieDev',
     periode: 'Depuis 2026',
     points: [
       'Création et gestion d’une entreprise de développement web.',
       'Édition d’Artizio, suite d’outils mobiles pour les artisans du bâtiment.',
-      'Conception et développement de sites sur mesure avec Vue et React, du recueil des besoins à la mise en ligne.',
+      'Sites clients sur mesure, de Vue et React au HTML/CSS, du recueil des besoins à la mise en ligne.',
     ],
   },
   {
+    id: 'exp-cleanspot',
     poste: 'Développeuse full stack mobile',
     structure: 'Cleanspot',
     periode: 'Juin à septembre 2024',
@@ -79,6 +89,7 @@ export const experiences: Experience[] = [
     ],
   },
   {
+    id: 'exp-aeroport',
     poste: 'Exploitation aéroportuaire',
     structure: 'Aéroport de Perpignan',
     periode: '1998 à 2022',
@@ -101,6 +112,14 @@ export interface Projet {
   description: string
   stack?: string[]
   lien?: string
+  // Capture d’écran du site (dans src/assets/projets/, importée en haut du fichier)
+  image?: string
+  // Visuels complémentaires (affiches, réseaux sociaux…), ouverts en grand au clic
+  visuels?: { src: string; alt: string; legende: string }[]
+  // Aperçu affiché tant qu’il n’y a pas de capture
+  apercu: { titre: string; sousTitre: string; fond: string; texte: string }
+  // Détails techniques affichés en dépliant la carte
+  details: string[]
 }
 
 export const projets: Projet[] = [
@@ -110,6 +129,16 @@ export const projets: Projet[] = [
       'Suite d’outils mobiles pour les artisans du bâtiment, éditée par EVieDev : kilomètres (Trajio), métrés (Surfacio), photos de chantier (Staggio) et notes de frais (Frezio). Trajio et Surfacio sont prêts pour les stores.',
     stack: ['Flutter', 'Dart'],
     lien: 'https://artizio.fr/',
+    image: captureArtizio,
+    visuels: [{ src: visuelTrajio, alt: 'Affiche de lancement de Trajio, application de suivi des kilomètres', legende: 'Affiche de lancement de Trajio' }],
+    apercu: { titre: 'Moins de gestion. Plus de chantiers.', sousTitre: 'Outils mobiles pour artisans du bâtiment', fond: '#88153a', texte: '#ffffff' },
+    details: [
+      'Quatre applications indépendantes : Trajio, Surfacio, Staggio et Frezio.',
+      'Pensées mobile d’abord, utilisables d’une main sur le chantier.',
+      'Données stockées sur l’appareil, sans compte obligatoire.',
+      'Exports CSV et Excel, dossiers PDF dans la version Pro.',
+      'Couche commune d’observabilité : erreurs, crashs et diagnostic, couverte par des tests.',
+    ],
   },
   {
     nom: 'Fuster Peinture',
@@ -117,6 +146,15 @@ export const projets: Projet[] = [
       'Site d’un artisan peintre à Cabestany : présentation des services, réalisations avant et après, demande de devis et gestion des cookies conforme au RGPD.',
     stack: ['HTML', 'CSS', 'JavaScript'],
     lien: 'https://www.fuster-peinture.fr/',
+    image: captureFuster,
+    visuels: [{ src: flyerFuster, alt: 'Flyer Fuster Peinture : besoin d’un peintre ?', legende: 'Flyer pour les réseaux sociaux' }],
+    apercu: { titre: 'Artisan peintre à Cabestany', sousTitre: 'Peinture intérieure et extérieure', fond: '#f1ece4', texte: '#1f2a37' },
+    details: [
+      'Site vitrine responsive, sans framework, optimisé pour le référencement local.',
+      'Galerie de chantiers avant, pendant et après.',
+      'Formulaire de devis avec validation des champs côté client.',
+      'Bandeau de consentement aux cookies conforme au RGPD, mesure d’audience optionnelle.',
+    ],
   },
 ]
 
@@ -157,3 +195,43 @@ export const engagement = {
 }
 
 export const langues = 'Français, langue maternelle. Anglais, niveau B1. Espagnol, notions.'
+
+export interface EtapeMethode {
+  titre: string
+  escale: string
+  qa: string
+}
+
+// Section « Ma méthode » : la même démarche, à l’escale et en QA.
+export const methode: EtapeMethode[] = [
+  {
+    titre: 'Préparer',
+    escale: 'Avant chaque vol : programme, ressources, devis de masse et centrage. Rien ne part sans préparation.',
+    qa: 'Avant chaque recette : analyse des besoins, plan de test et cas de test qui couvrent les parcours critiques.',
+  },
+  {
+    titre: 'Contrôler',
+    escale: 'Check-lists avant la fermeture des portes : chaque point vérifié, dans l’ordre, à chaque fois.',
+    qa: 'Tests E2E automatisés avec Playwright et Cypress, non-régression avant chaque mise en production.',
+  },
+  {
+    titre: 'Gérer les aléas',
+    escale: 'Retard, panne, météo : qualifier vite, prévenir les bons interlocuteurs, trouver une solution.',
+    qa: 'Une anomalie détectée : la reproduire, la qualifier, la suivre avec le produit et le développement jusqu’à sa correction.',
+  },
+  {
+    titre: 'Améliorer',
+    escale: 'Rédaction des procédures, formation des nouveaux agents, retour d’expérience après chaque incident.',
+    qa: 'Documentation des tests, partage des bonnes pratiques, amélioration continue des process qualité.',
+  },
+]
+
+// Terminal du haut de page : les « tests » lancés sur le profil.
+export const tests: { suite: string; titre: string; duree: number }[] = [
+  { suite: 'qa', titre: 'tests E2E Playwright et Cypress en production chez UgoFresh', duree: 341 },
+  { suite: 'dev', titre: 'Vue 3, React, TypeScript, Node.js, PostgreSQL', duree: 156 },
+  { suite: 'architecture', titre: 'formation RNCP 7 en architecture informatique et données', duree: 187 },
+  { suite: 'entrepreneuriat', titre: 'présidente d’EVieDev, éditrice d’Artizio', duree: 203 },
+  { suite: 'engagement', titre: 'co-fondatrice de ProxyGirl’s', duree: 98 },
+  { suite: 'terrain', titre: '24 ans de gestion des opérations et des imprévus', duree: 212 },
+]
